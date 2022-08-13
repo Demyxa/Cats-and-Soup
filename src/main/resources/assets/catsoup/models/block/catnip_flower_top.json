@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "catsoup:blocks/catnip_flower_top"
+	}
+}

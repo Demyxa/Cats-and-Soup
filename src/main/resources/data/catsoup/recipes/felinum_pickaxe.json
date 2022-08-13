@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"FFF",
+		" S ",
+		" S "
+	],
+	"key": {
+		"F": {
+			"item": "catsoup:felinum_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "catsoup:felinum_pickaxe"
+			
+		}
+	
+}

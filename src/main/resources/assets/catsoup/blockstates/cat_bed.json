@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=north": { "model": "catsoup:block/cat_bed", "y": 270},
+    "facing=east": { "model": "catsoup:block/cat_bed", "y": 0},
+    "facing=south": { "model": "catsoup:block/cat_bed", "y":  90},
+    "facing=west": { "model": "catsoup:block/cat_bed", "y":  180}
+
+  }
+}

@@ -1,0 +1,31 @@
+{	
+	"item.catsoup.handheldcat": "Handheld Cat",
+	"item.catsoup.felinum_ingot": "Felinum Ingot",
+	"block.catsoup.catblock": "Catblock",
+	"block.catsoup.felinum_storage": "Felinum Block",
+	"block.catsoup.cat_bed": "Cat Bed",
+	
+	"item.catsoup.felinum_pickaxe": "Felinum Pickaxe",
+	"item.catsoup.felinum_axe": "Felinum Axe",
+	"item.catsoup.felinum_shovel": "Felinum Shovel",
+	"item.catsoup.felinum_hoe": "Felinum Hoe",
+	"item.catsoup.felinum_sword": "Felinum Sword",
+	"item.catsoup.transform_wand": "Transformation Wand",
+	"item.catsoup.felinum_cat_armor": "Felinum Cat Armor",
+	
+	"item.catsoup.catnip": "Catnip",
+	"block.catsoup.catnip_flower": "Nepeta Cataria",
+	
+	"effect.catsoup.feline_vigor": "Feline Vigor",
+	"effect.catsoup.feline_ferocity": "Feline Ferocity",
+	"item.minecraft.potion.effect.feline_vigor_potion": "Potion of Feline Vigor",
+	"item.minecraft.splash_potion.effect.feline_vigor_potion": "Splash Potion of Feline Vigor",
+	"item.minecraft.lingering_potion.effect.feline_vigor_potion": "Lingering Potion of Feline Vigor",
+	
+	"entity.catsoup.glowing_box": "Glowing Box",
+	"entity.catsoup.souped_cat": "Souped Cat"
+	
+	
+	
+	
+}

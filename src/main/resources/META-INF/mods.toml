@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[36,)" 
+license="All rights reserved"
+[[mods]] #mandatory
+modId="catsoup"
+version="${file.jarVersion}"
+displayName="Cats and Soup" 
+logoFile="examplemod.png"
+credits="I have no idea what I'm doing, a thanks to to the MC Modding community."
+authors="Programming: Demyxa | Art: Yuyine" 
+description='''
+A Mod by Demyxa.
+It's my first one.
+'''
+
+[[dependencies.catsoup]]
+    modId="forge" #mandatory  
+    mandatory=true #mandatory   
+    versionRange="[36,)"  
+    ordering="NONE"  
+    side="BOTH"
+[[dependencies.catsoup]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

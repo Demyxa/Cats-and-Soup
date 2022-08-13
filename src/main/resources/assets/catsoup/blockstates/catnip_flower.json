@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"half=lower": {"model": "catsoup:block/catnip_flower_bottom"},
+		"half=upper": {"model": "catsoup:block/catnip_flower_top"}
+	}
+}
+

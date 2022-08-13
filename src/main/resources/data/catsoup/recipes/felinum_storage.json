@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		},
+		{
+			"item": "catsoup:felinum_ingot"
+		}
+	],
+	"result": {
+		"item": "catsoup:felinum_storage",
+		"count": 1
+	}
+}

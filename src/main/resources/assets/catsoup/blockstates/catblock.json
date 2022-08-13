@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "catsoup:block/catblock"
+		}
+	}
+}

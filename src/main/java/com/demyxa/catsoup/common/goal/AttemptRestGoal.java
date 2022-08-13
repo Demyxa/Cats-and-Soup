@@ -1,14 +1,20 @@
 package com.demyxa.catsoup.common.goal;
 
+import com.demyxa.catsoup.common.block.CatBedBlock;
 import com.demyxa.catsoup.common.entity.SoupedCat;
 import com.demyxa.catsoup.core.init.BlockInit;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
+
 import net.minecraft.world.IWorldReader;
 
 import java.util.EnumSet;
+
+import static com.demyxa.catsoup.common.block.CatBedBlock.USED;
+
 
 public class AttemptRestGoal extends MoveToBlockGoal {
 
@@ -39,6 +45,10 @@ public class AttemptRestGoal extends MoveToBlockGoal {
         super.tick();
         if (super.isReachedTarget() && !this.entity.isResting) {
             this.entity.startResting();
+            BlockState bedState = entity.level.getBlockState(this.getMoveToTarget());
+            CatBedBlock bedBlock = (CatBedBlock) bedState.getBlock();
+            bedBlock.setUsedState(bedState, true);
+
 
         }
 

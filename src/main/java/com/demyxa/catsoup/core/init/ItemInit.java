@@ -48,4 +48,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> TRANSFORM_WAND = ITEMS.register("transform_wand",
 			() -> new Item(new Item.Properties().tab(CatSoupItemGroup.CATSOUP)));
 
+	public static final RegistryObject<Item> HAIR_BRUSH = ITEMS.register("hair_brush",
+			() -> new Item(new Item.Properties().tab(CatSoupItemGroup.CATSOUP)));
+
+	public static final RegistryObject<Item> CAT_FUR = ITEMS.register("cat_fur",
+			() -> new Item(new Item.Properties().tab(CatSoupItemGroup.CATSOUP)));
+
 }

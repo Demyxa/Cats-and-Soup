@@ -45,7 +45,6 @@ import java.util.UUID;
 public class SoupedCat extends TameableEntity implements IInventoryChangedListener, IEquipable {
 
 	protected Inventory inventory;
-
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("046E1665-8B10-40C8-8F9D-CF9B1667F295");
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(SoupedCat.class, DataSerializers.BYTE);
 	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(SoupedCat.class, DataSerializers.OPTIONAL_UUID);
@@ -83,17 +82,19 @@ public class SoupedCat extends TameableEntity implements IInventoryChangedListen
 	protected void registerGoals() {
 
 		this.goalSelector.addGoal(1, new SwimGoal(this));
-		this.goalSelector.addGoal(5, new AttemptRestGoal(this, 1.0D));
+
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(7, new MeleeAttackGoal(this, 1.0D, true));
-		this.goalSelector.addGoal(8, new FollowOwnerGoal(this, 1.0D, 4.0F, 2.0F, false));
+		this.goalSelector.addGoal(8, new AttemptRestGoal(this, 1.0D));
+		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1.0D, 4.0F, 2.0F, false));
 		this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(1, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(2, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, false));
+
 
 	}
 
@@ -156,6 +157,7 @@ public class SoupedCat extends TameableEntity implements IInventoryChangedListen
 	public void setOwnerUUID(@Nullable UUID pUuid) {
 		this.entityData.set(DATA_ID_OWNER_UUID, Optional.ofNullable(pUuid));
 	}
+
 
 	@Override
 	public void containerChanged(IInventory pInvBasic) {

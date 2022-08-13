@@ -1,27 +1,30 @@
 package com.demyxa.catsoup.common.block;
 
+import com.demyxa.catsoup.core.init.ItemInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 import java.util.stream.Stream;
 
@@ -71,11 +74,15 @@ public class CatBedBlock extends Block {
 
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty USED = BlockStateProperties.CONDITIONAL;
+
 
     public CatBedBlock() {
         super(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_RED).strength(0.2f).sound(SoundType.WOOL).harvestLevel(0));
 
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(USED, false));
+
 
     }
     @Override
@@ -92,6 +99,10 @@ public class CatBedBlock extends Block {
             default:
                 return SHAPE_N;
         }
+    }
+
+    public void setUsedState(BlockState pState, Boolean pCondition) {
+        pState.setValue(USED, pCondition);
     }
 
     @Override
@@ -112,5 +123,19 @@ public class CatBedBlock extends Block {
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
         super.createBlockStateDefinition(pBuilder);
         pBuilder.add(FACING);
+    }
+
+    @Override
+    public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
+        if (pState.getValue(USED)) {
+            if (pPlayer.getItemInHand(pHand).equals(ItemInit.HAIR_BRUSH.get())) {
+                pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 1));
+                pState.setValue(USED, false);
+                return ActionResultType.SUCCESS;
+            }
+        } else {
+            return ActionResultType.FAIL;
+        }
+        return ActionResultType.PASS;
     }
 }

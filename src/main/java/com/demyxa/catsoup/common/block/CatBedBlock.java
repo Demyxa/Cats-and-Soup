@@ -74,14 +74,14 @@ public class CatBedBlock extends Block {
 
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty USED = BlockStateProperties.CONDITIONAL;
+    //public static final BooleanProperty USED = BlockStateProperties.CONDITIONAL;
 
 
     public CatBedBlock() {
         super(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_RED).strength(0.2f).sound(SoundType.WOOL).harvestLevel(0));
 
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
-        this.registerDefaultState(this.defaultBlockState().setValue(USED, false));
+        //this.registerDefaultState(this.defaultBlockState().setValue(USED, false));
 
 
     }
@@ -101,9 +101,6 @@ public class CatBedBlock extends Block {
         }
     }
 
-    public void setUsedState(BlockState pState, Boolean pCondition) {
-        pState.setValue(USED, pCondition);
-    }
 
     @Override
     public BlockState mirror (BlockState state, Mirror pMirror) {
@@ -123,19 +120,20 @@ public class CatBedBlock extends Block {
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
         super.createBlockStateDefinition(pBuilder);
         pBuilder.add(FACING);
+        //pBuilder.add(USED);
     }
 
-    @Override
-    public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
-        if (pState.getValue(USED)) {
-            if (pPlayer.getItemInHand(pHand).equals(ItemInit.HAIR_BRUSH.get())) {
-                pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 1));
-                pState.setValue(USED, false);
-                return ActionResultType.SUCCESS;
-            }
-        } else {
-            return ActionResultType.FAIL;
-        }
-        return ActionResultType.PASS;
-    }
+   /* @Override
+    *public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
+    *    if (pState.getValue(USED)) {
+    *        if (pPlayer.getItemInHand(pHand).equals(ItemInit.HAIR_BRUSH.get())) {
+    *            pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 1));
+    *            pState.setValue(USED, false);
+    *            return ActionResultType.SUCCESS;
+    *        }
+    *    } else {
+    *        return ActionResultType.FAIL;
+    *    }
+    *    return ActionResultType.PASS;
+    }*/
 }

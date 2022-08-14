@@ -1,11 +1,14 @@
 package com.demyxa.catsoup.common.block;
 
+import com.demyxa.catsoup.common.TE.CatBedTileEntity;
 import com.demyxa.catsoup.core.init.ItemInit;
+import com.demyxa.catsoup.core.init.TileEntityInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.conditions.BlockStateProperty;
@@ -26,6 +29,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 public class CatBedBlock extends Block {
@@ -101,6 +105,16 @@ public class CatBedBlock extends Block {
         }
     }
 
+    @Override
+    @Nullable
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return TileEntityInit.CAT_BED_TILE_ENTITY.get().create();
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
 
     @Override
     public BlockState mirror (BlockState state, Mirror pMirror) {
@@ -120,20 +134,27 @@ public class CatBedBlock extends Block {
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
         super.createBlockStateDefinition(pBuilder);
         pBuilder.add(FACING);
-        //pBuilder.add(USED);
+
     }
 
-   /* @Override
-    *public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
-    *    if (pState.getValue(USED)) {
-    *        if (pPlayer.getItemInHand(pHand).equals(ItemInit.HAIR_BRUSH.get())) {
-    *            pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 1));
-    *            pState.setValue(USED, false);
-    *            return ActionResultType.SUCCESS;
-    *        }
-    *    } else {
-    *        return ActionResultType.FAIL;
-    *    }
-    *    return ActionResultType.PASS;
-    }*/
+    @Override
+    public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
+        if (pLevel.isClientSide) {
+            TileEntity tileEntity = pLevel.getBlockEntity(pPos);
+            if (tileEntity instanceof CatBedTileEntity) {
+
+                if (pPlayer.getMainHandItem().getItem().equals(ItemInit.HAIR_BRUSH.get())) {
+                    if (((CatBedTileEntity) tileEntity).wasUsed) {
+                        pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 2));
+                        ((CatBedTileEntity) tileEntity).wasUsed = false;
+                        return ActionResultType.SUCCESS;
+                    }
+                }
+            } else {
+                return ActionResultType.FAIL;
+            }
+
+        }
+        return ActionResultType.PASS;
+    }
 }

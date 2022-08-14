@@ -42,7 +42,7 @@ public class CatSoup {
 
 		EntityTypesInit.ENTITY_TYPES.register(bus);
 		BlockInit.BLOCKS.register(bus);
-
+		TileEntityInit.TILE_ENTITIES.register(bus);
 		ItemInit.ITEMS.register(bus);
 		PotionEffectInit.REGISTER.register(bus);
 		PotionsInit.POTIONS.register(bus);

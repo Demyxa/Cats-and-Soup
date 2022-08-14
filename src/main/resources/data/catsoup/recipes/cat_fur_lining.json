@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SFS",
+    "SFS",
+    "SFS"
+  ],
+  "key": {
+    "F": {
+      "item": "catsoup:cat_fur"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "catsoup:cat_fur_lining"
+
+
+  }
+}

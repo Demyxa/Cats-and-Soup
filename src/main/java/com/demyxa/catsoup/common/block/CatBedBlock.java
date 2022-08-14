@@ -147,6 +147,7 @@ public class CatBedBlock extends Block {
                     if (((CatBedTileEntity) tileEntity).wasUsed) {
                         pPlayer.inventory.add(new ItemStack(ItemInit.CAT_FUR.get(), 2));
                         ((CatBedTileEntity) tileEntity).wasUsed = false;
+                        tileEntity.setChanged();
                         return ActionResultType.SUCCESS;
                     }
                 }

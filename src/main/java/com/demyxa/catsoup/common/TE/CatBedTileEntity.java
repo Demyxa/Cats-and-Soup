@@ -23,6 +23,14 @@ public class CatBedTileEntity extends TileEntity {
         this(TileEntityInit.CAT_BED_TILE_ENTITY.get());
     }
 
+    public void setChanged(){
+        super.setChanged();
+
+        BlockState state = this.level.getBlockState(this.worldPosition);
+        this.level.sendBlockUpdated(this.worldPosition, state, state, 3);
+        this.level.updateNeighborsAt(this.worldPosition, state.getBlock());
+    }
+
     @Override
     public CompoundNBT save(CompoundNBT pCompound) {
         super.save(pCompound);
@@ -38,7 +46,7 @@ public class CatBedTileEntity extends TileEntity {
 
 
     }
-    //Don't touch the 3, idk what it is or why it's here, just
+    //Don't touch the 3, I don't know what it is or why it's here, just
     //don't fucking touch it.
     public SUpdateTileEntityPacket getUpdatePacket(){
         return new SUpdateTileEntityPacket(this.getBlockPos(), 3, getUpdateTag());

@@ -49,6 +49,7 @@ public class AttemptRestGoal extends MoveToBlockGoal {
             this.entity.startResting();
             CatBedTileEntity catbedTE = (CatBedTileEntity) this.entity.level.getBlockEntity(entity.getNavigation().getTargetPos().below());
             catbedTE.wasUsed = true;
+            catbedTE.setChanged();
         }
 
     }
@@ -66,6 +67,7 @@ public class AttemptRestGoal extends MoveToBlockGoal {
 
     @Override
     public void stop() {
+
         super.stop();
     }
 

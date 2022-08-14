@@ -54,4 +54,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> CAT_FUR = ITEMS.register("cat_fur",
 			() -> new Item(new Item.Properties().tab(CatSoupItemGroup.CATSOUP)));
 
+	public static final RegistryObject<Item> CAT_FUR_LINING = ITEMS.register("cat_fur_lining",
+			() -> new Item(new Item.Properties().tab(CatSoupItemGroup.CATSOUP)));
+
 }
